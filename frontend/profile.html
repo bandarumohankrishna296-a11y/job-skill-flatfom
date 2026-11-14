@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile &amp; Resume | Job Skill Matcher</title>
+  <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-require-role="applicant" data-page="profile">
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Applicant navigation">
+      <div class="sidebar-header">
+        <a class="brand" href="index.html">
+          <span class="brand-mark"><i class="fa-solid fa-briefcase"></i></span>
+          <span class="brand-text">JobSkill Matcher<small>Applicant workspace</small></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <p class="nav-section-label">Workspace</p>
+        <a href="applicant-dashboard.html" class="nav-link">
+          <i class="fa-solid fa-table-columns"></i> Overview
+        </a>
+        <a href="jobs.html" class="nav-link">
+          <i class="fa-solid fa-magnifying-glass"></i> Browse jobs
+        </a>
+        <a href="applications.html" class="nav-link">
+          <i class="fa-solid fa-clipboard-list"></i> My applications
+        </a>
+        <a href="profile.html" class="nav-link active">
+          <i class="fa-regular fa-user"></i> Profile &amp; resume
+        </a>
+
+        <p class="nav-section-label" style="margin-top: 12px;">Learning</p>
+        <a href="jobs.html?sort=match" class="nav-link">
+          <i class="fa-solid fa-bullseye"></i> Skill matches
+        </a>
+        <a href="profile.html#skills" class="nav-link">
+          <i class="fa-solid fa-code"></i> My skills
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <span class="avatar" data-user-avatar>AS</span>
+          <div class="sidebar-user-copy">
+            <strong data-user-name>Applicant</strong>
+            <span data-user-role>Applicant</span>
+          </div>
+          <button type="button" class="icon-button" data-logout title="Logout" aria-label="Logout">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="mobile-sidebar-overlay" data-sidebar-overlay></div>
+
+    <div class="main-shell">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="hamburger" data-sidebar-toggle aria-label="Open navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <span class="topbar-title">Applicant &nbsp;/&nbsp; <strong>Profile &amp; resume</strong></span>
+        </div>
+        <div class="topbar-right">
+          <div class="notification-wrap" data-notification-bell>
+            <button type="button" class="icon-button notification-button" aria-label="Notifications">
+              <i class="fa-regular fa-bell"></i>
+              <span class="notification-badge" hidden>0</span>
+            </button>
+            <div class="notification-dropdown" hidden>
+              <div class="notification-head">
+                <strong>Notifications</strong>
+                <button type="button" data-mark-all>Mark all read</button>
+              </div>
+              <div class="notification-list">
+                <div class="loading-state"><span class="spinner"></span> Loading...</div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-user">
+            <span class="avatar" data-user-avatar>AS</span>
+            <div class="topbar-user-copy">
+              <strong data-user-name>Applicant</strong>
+              <span data-user-email>applicant@demo.com</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <div class="page-heading">
+          <div>
+            <h1>Profile &amp; resume</h1>
+            <p>Keep your details and skills up to date so match scores stay accurate.</p>
+          </div>
+          <div class="page-heading-actions">
+            <a href="jobs.html" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i> Find jobs</a>
+          </div>
+        </div>
+
+        <div class="info-banner warning-banner mb-2" id="profile-resume-banner" hidden>
+          <i class="fa-solid fa-file-circle-exclamation"></i>
+          <div>
+            <strong>Resume missing</strong>
+            Upload a PDF or DOCX resume below to unlock match scores, missing skills and course recommendations.
+          </div>
+        </div>
+
+        <div class="profile-grid">
+          <aside class="dashboard-stack">
+            <section class="card profile-summary-card">
+              <span class="avatar lg" id="profile-avatar">AS</span>
+              <h2 id="profile-summary-name">Applicant</h2>
+              <p id="profile-summary-headline">Add a short headline about your goals.</p>
+              <p class="muted text-small" id="profile-summary-location">Location not added</p>
+              <span class="badge badge-blue" id="profile-member-since">Member</span>
+
+              <div class="profile-stats">
+                <div class="profile-stat">
+                  <strong id="profile-total-applications">0</strong>
+                  <span>Applications</span>
+                </div>
+                <div class="profile-stat">
+                  <strong id="profile-average-match">0%</strong>
+                  <span>Average match</span>
+                </div>
+                <div class="profile-stat">
+                  <strong id="profile-matching-jobs">0</strong>
+                  <span>Matching jobs</span>
+                </div>
+                <div class="profile-stat">
+                  <strong id="profile-applications-today">0</strong>
+                  <span>Applied today</span>
+                </div>
+              </div>
+            </section>
+
+            <section class="card">
+              <div class="card-body">
+                <div class="limit-card">
+                  <div class="limit-top">
+                    <span><i class="fa-solid fa-shield-halved"></i> Daily application limit</span>
+                    <strong id="profile-limit-used">0 / 10 used</strong>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" id="profile-limit-progress" style="width: 0%;"></div>
+                  </div>
+                  <p><span id="profile-limit-remaining">You can submit 10 more applications today.</span> The limit uses the Asia/Kolkata calendar day.</p>
+                </div>
+              </div>
+            </section>
+          </aside>
+
+          <div class="dashboard-stack">
+            <section class="card">
+              <div class="card-header">
+                <div>
+                  <h2>Personal details</h2>
+                  <p>Your email address cannot be changed after registration.</p>
+                </div>
+              </div>
+              <div class="card-body">
+                <form id="profile-form" novalidate>
+                  <div class="form-alert" id="profile-alert" hidden></div>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="profile-name">Full name <span class="required">*</span></label>
+                      <input type="text" class="input" id="profile-name" maxlength="80" required placeholder="Ananya Sharma">
+                    </div>
+                    <div class="form-group">
+                      <label for="profile-email">Email address</label>
+                      <input type="email" class="input" id="profile-email" disabled>
+                      <small class="field-help">Contact support to change your registered email.</small>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="profile-headline">Headline</label>
+                      <input type="text" class="input" id="profile-headline" maxlength="120" placeholder="Final-year AI &amp; Data Science student">
+                    </div>
+                    <div class="form-group">
+                      <label for="profile-location">Location</label>
+                      <input type="text" class="input" id="profile-location" maxlength="100" placeholder="Chennai, Tamil Nadu">
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-floppy-disk"></i> Save changes
+                  </button>
+                </form>
+              </div>
+            </section>
+
+            <section class="card" id="skills">
+              <div class="card-header">
+                <div>
+                  <h2>Resume &amp; skills</h2>
+                  <p>Upload a text-based PDF or DOCX file up to 5 MB. Skills are extracted automatically.</p>
+                </div>
+                <div class="header-actions">
+                  <button type="button" class="btn btn-outline btn-sm" data-edit-skills disabled>
+                    <i class="fa-solid fa-pen"></i> Review skills
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="info-banner warning-banner mb-2" data-resume-empty>
+                  <i class="fa-solid fa-file-circle-exclamation"></i>
+                  <div><strong>No resume on file</strong> Upload your resume to start matching.</div>
+                </div>
+
+                <div data-resume-details hidden>
+                  <div class="resume-panel">
+                    <div class="resume-file">
+                      <span class="file-icon"><i class="fa-regular fa-file-pdf"></i></span>
+                      <div style="min-width: 0;">
+                        <strong data-resume-filename>Resume</strong>
+                        <span data-resume-meta></span>
+                      </div>
+                    </div>
+                    <div class="header-actions">
+                      <button type="button" class="btn btn-light btn-sm" data-resume-download>
+                        <i class="fa-solid fa-download"></i> Download
+                      </button>
+                      <button type="button" class="icon-button danger" data-resume-delete title="Delete resume" aria-label="Delete resume">
+                        <i class="fa-regular fa-trash-can"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="resume-dropzone mt-2" data-resume-dropzone>
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                  <strong data-dropzone-label>Click to upload or drag a PDF/DOCX file here</strong>
+                  <span>Maximum 5 MB. Your file is stored privately on the server.</span>
+                  <input type="file" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" data-resume-input hidden>
+                </div>
+
+                <div class="skills-block">
+                  <div class="skills-block-head">
+                    <h4><i class="fa-solid fa-wand-magic-sparkles"></i> Extracted from resume</h4>
+                    <span data-resume-status-pill class="badge status-pending">Resume missing</span>
+                  </div>
+                  <div class="skill-list" data-extracted-skills></div>
+                </div>
+
+                <div class="skills-block">
+                  <div class="skills-block-head">
+                    <h4><i class="fa-solid fa-hand"></i> Manually added skills</h4>
+                    <span class="badge badge-blue" id="profile-skills-count">0 skills</span>
+                  </div>
+                  <div class="skill-list" data-manual-skills></div>
+                </div>
+
+                <div class="skills-block">
+                  <div class="skills-block-head">
+                    <h4><i class="fa-solid fa-code"></i> All skills used for matching</h4>
+                  </div>
+                  <div class="skill-list" data-all-skills></div>
+                </div>
+
+                <div class="skill-legend">
+                  <span><i></i> Extracted</span>
+                  <span><i class="manual"></i> Manual</span>
+                  <span><i class="matched"></i> Matched in job</span>
+                  <span><i class="missing"></i> Missing in job</span>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/resume.js"></script>
+  <script src="js/applicant.js"></script>
+</body>
+</html>

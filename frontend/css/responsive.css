@@ -1,0 +1,193 @@
+/* css/responsive.css
+   Tablet and mobile adjustments. */
+
+@media (max-width: 1080px) {
+  :root { --sidebar-width: 238px; }
+  .page-content { padding: 24px; }
+  .topbar { padding: 0 24px; }
+  .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dashboard-grid { grid-template-columns: 1fr; }
+  .dashboard-grid.equal { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sidebar { width: var(--sidebar-width); }
+  .feature-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps { grid-template-columns: repeat(3, 1fr); }
+  .job-detail-layout { grid-template-columns: 1fr; }
+  .job-side-card { position: static; }
+  .profile-grid { grid-template-columns: 1fr; }
+  .profile-stats { max-width: 380px; margin-left: auto; margin-right: auto; }
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    transform: translateX(-100%);
+    box-shadow: 16px 0 40px rgba(15, 23, 42, 0.12);
+  }
+
+  .sidebar.open { transform: translateX(0); }
+  .main-shell { margin-left: 0; }
+  .hamburger { display: inline-grid; place-items: center; }
+  .topbar { height: 68px; padding: 0 18px; }
+  .page-content { padding: 20px 18px 30px; }
+  .topbar-title { display: none; }
+  .hero { padding: 52px 0 60px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero-copy { max-width: 680px; }
+  .hero-visual { max-width: 600px; margin: 0 auto; width: 100%; }
+  .public-nav-links {
+    display: none;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    right: 0;
+    padding: 14px 20px 20px;
+    border-bottom: 1px solid var(--border);
+    background: #fff;
+    box-shadow: 0 18px 30px rgba(15, 23, 42, 0.1);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .public-nav-links.open { display: flex; }
+  .public-nav-links > a:not(.btn) { padding: 9px 3px; }
+  .public-nav-actions { flex-direction: column; align-items: stretch; }
+  .public-nav-actions .btn { width: 100%; }
+  .nav-toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--text);
+  }
+  .public-nav-actions-wrap { display: flex; align-items: center; gap: 8px; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .role-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .cta-band { flex-direction: column; align-items: flex-start; padding: 38px 30px; }
+  .auth-layout { grid-template-columns: 1fr; }
+  .auth-aside { min-height: auto; padding: 30px 26px; }
+  .auth-aside-content { margin: 34px 0 20px; }
+  .auth-aside-content h1 { font-size: 2rem; }
+  .auth-aside-footer { display: none; }
+  .auth-main { padding: 36px 26px 48px; }
+  .jobs-grid { grid-template-columns: 1fr; }
+  .filter-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .filter-row .btn { width: 100%; }
+  .candidate-filters { grid-template-columns: 1fr 1fr; }
+  .candidate-filters .btn { grid-column: span 2; }
+}
+
+@media (max-width: 700px) {
+  .container { width: min(100% - 28px, 1180px); }
+  .public-nav { height: 68px; }
+  .brand { font-size: 0.96rem; }
+  .brand-mark { width: 38px; height: 38px; }
+  .brand-text small { display: none; }
+  .public-nav-links { top: 68px; }
+  .hero h1 { font-size: clamp(2.2rem, 10vw, 3rem); }
+  .hero-proof { gap: 16px 22px; }
+  .hero-actions .btn { flex: 1 1 160px; }
+  .floating-card { display: none; }
+  .section-header { margin-bottom: 30px; }
+  .landing-section { padding: 58px 0; }
+  .auth-aside-content { display: none; }
+  .auth-aside { padding: 22px 20px; }
+  .auth-aside .brand { margin: 0 auto; }
+  .auth-main { padding: 28px 18px 42px; align-items: flex-start; }
+  .auth-card { max-width: 480px; }
+  .auth-card-header { margin-bottom: 22px; }
+  .form-row { grid-template-columns: 1fr; }
+  .role-options { gap: 9px; }
+  .role-option-inner { padding: 11px; }
+  .role-option-inner i { width: 30px; height: 30px; margin-bottom: 7px; }
+  .demo-buttons .btn { flex-basis: 100%; }
+  .page-heading { flex-direction: column; gap: 13px; }
+  .page-heading-actions { width: 100%; }
+  .page-heading-actions .btn { flex: 1; }
+  .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .stat-card { padding: 15px; }
+  .stat-card h3 { font-size: 1.4rem; }
+  .stat-icon { width: 36px; height: 36px; }
+  .dashboard-grid.equal { grid-template-columns: 1fr; }
+  .card-header { padding: 16px 17px; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .card-header .header-actions { width: 100%; }
+  .card-body { padding: 17px; }
+  .card-footer { padding: 14px 17px; }
+  .resume-panel { grid-template-columns: 1fr; }
+  .resume-panel .btn { width: 100%; }
+  .topbar-user-copy { display: none; }
+  .topbar-user { border-left: 0; padding-left: 0; }
+  .topbar-right { gap: 7px; }
+  .icon-button { width: 37px; height: 37px; }
+  .data-table { min-width: 650px; }
+  .data-table th, .data-table td { padding: 11px 13px; }
+  .filter-row { grid-template-columns: 1fr; }
+  .candidate-filters { grid-template-columns: 1fr; }
+  .candidate-filters .btn { grid-column: auto; }
+  .skill-compare { grid-template-columns: 1fr; }
+  .job-detail-title-row { flex-direction: column; }
+  .job-detail-title-row .match-ring { align-self: flex-start; }
+  .job-detail-hero { padding: 21px; }
+  .job-side-card .card-body { padding: 17px; }
+  .course-list { gap: 8px; }
+  .topbar { height: 64px; }
+  .page-content { padding: 18px 14px 28px; }
+  .notification-dropdown { position: fixed; top: 70px; right: 14px; left: 14px; width: auto; }
+  .pagination { gap: 4px; }
+  .page-btn { min-width: 33px; height: 33px; }
+  .cta-band h2 { font-size: 1.5rem; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .modal-overlay { padding: 12px; align-items: flex-end; }
+  .modal { max-height: 92vh; border-radius: 18px 18px 10px 10px; }
+  .modal-header, .modal-body { padding-left: 18px; padding-right: 18px; }
+  .modal-footer { padding-left: 18px; padding-right: 18px; }
+  .modal-footer .btn { flex: 1; }
+  .toast-container { right: 14px; bottom: 14px; width: calc(100vw - 28px); }
+}
+
+@media (max-width: 520px) {
+  .public-nav-actions .btn-outline { display: none; }
+  .hero { padding-top: 38px; }
+  .eyebrow { font-size: 0.66rem; }
+  .hero-proof-item strong { font-size: 1.1rem; }
+  .preview-grid { grid-template-columns: repeat(2, 1fr); }
+  .preview-stat:last-child { display: none; }
+  .hero-preview { padding: 16px; }
+  .role-card { padding: 24px; }
+  .stat-grid { grid-template-columns: 1fr 1fr; }
+  .stat-card .stat-trend { display: none; }
+  .status-summary-grid { grid-template-columns: 1fr 1fr; }
+  .topbar-right .topbar-user { display: none; }
+  .topbar-left { min-width: 0; }
+  .topbar-left .brand { max-width: 190px; }
+  .page-heading h1 { font-size: 1.4rem; }
+  .job-card { padding: 17px; }
+  .job-card-top { gap: 9px; }
+  .job-card-bottom { flex-direction: column; align-items: flex-start; }
+  .job-card-bottom .btn { width: 100%; }
+  .jobs-toolbar { flex-direction: column; align-items: stretch; }
+  .jobs-sort { justify-content: space-between; }
+  .jobs-sort .select { flex: 1; width: auto; }
+  .candidate-app-item { flex-direction: column; align-items: flex-start; }
+  .job-manage-item { flex-direction: column; }
+  .job-manage-actions { width: 100%; justify-content: flex-start; }
+  .profile-stats { grid-template-columns: 1fr 1fr; }
+  .match-counts { grid-template-columns: 1fr 1fr; }
+  .notification-head { padding: 12px 13px; }
+  .notification-item { padding: 11px 13px; }
+  .auth-card-header h1, .auth-card-header h2 { font-size: 1.6rem; }
+  .skill-picker button { font-size: 0.63rem; }
+}
+
+@media (max-width: 380px) {
+  .brand-text { font-size: 0.9rem; }
+  .stat-grid { grid-template-columns: 1fr; }
+  .status-summary-grid { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; }
+  .topbar-right .notification-wrap { display: none; }
+  .page-heading-actions { flex-direction: column; }
+  .page-heading-actions .btn { width: 100%; }
+}

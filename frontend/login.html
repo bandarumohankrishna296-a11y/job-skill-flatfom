@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Job Skill Matcher</title>
+  <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="auth-layout">
+    <aside class="auth-aside">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"><i class="fa-solid fa-briefcase"></i></span>
+        <span class="brand-text">JobSkill Matcher<small>Match skills. Move ahead.</small></span>
+      </a>
+
+      <div class="auth-aside-content">
+        <span class="eyebrow" style="border-color: rgba(255,255,255,.2); background: rgba(255,255,255,.1); color:#dbeafe;">
+          <i class="fa-solid fa-bolt"></i> Skill-first hiring
+        </span>
+        <h1>Know your match before you hit apply.</h1>
+        <p>Turn a resume into a clear picture of job readiness, skill gaps and the next practical learning step.</p>
+        <ul class="auth-bullets">
+          <li><i class="fa-solid fa-check"></i> Resume skills detected automatically from PDF or DOCX</li>
+          <li><i class="fa-solid fa-check"></i> Transparent match percentage for every job</li>
+          <li><i class="fa-solid fa-check"></i> Missing skills linked to free courses and search results</li>
+          <li><i class="fa-solid fa-check"></i> Application status updates from real recruiters</li>
+        </ul>
+      </div>
+
+      <div class="auth-aside-footer">Job Skill Matcher • Full Stack Development academic project</div>
+    </aside>
+
+    <main class="auth-main">
+      <div class="auth-card">
+        <a href="index.html" class="auth-back-link"><i class="fa-solid fa-arrow-left"></i> Back to home</a>
+
+        <div class="auth-card-header">
+          <h1>Welcome back</h1>
+          <p>Sign in to continue to your dashboard.</p>
+        </div>
+
+        <div class="form-alert" id="login-alert" hidden></div>
+
+        <form id="login-form" novalidate>
+          <div class="form-group">
+            <label for="login-email">Email address</label>
+            <div class="input-wrap">
+              <i class="fa-regular fa-envelope"></i>
+              <input type="email" class="input" id="login-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <div class="input-wrap">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" class="input" id="login-password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+              <button type="button" class="password-toggle" data-toggle-password="login-password" aria-label="Show password">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg">
+            <i class="fa-solid fa-right-to-bracket"></i> Sign in
+          </button>
+        </form>
+
+        <div class="demo-login-box">
+          <p><i class="fa-solid fa-flask"></i> Quick demo access</p>
+          <div class="demo-buttons">
+            <button type="button" class="btn btn-light btn-sm" data-demo-email="applicant@demo.com" data-demo-password="Applicant@123" data-demo-role="Applicant">
+              <i class="fa-solid fa-user-graduate"></i> Applicant demo
+            </button>
+            <button type="button" class="btn btn-light btn-sm" data-demo-email="recruiter@demo.com" data-demo-password="Recruiter@123" data-demo-role="Recruiter">
+              <i class="fa-solid fa-user-tie"></i> Recruiter demo
+            </button>
+          </div>
+        </div>
+
+        <p class="auth-footer-text">New here? <a href="register.html">Create an account</a></p>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

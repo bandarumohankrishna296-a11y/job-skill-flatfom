@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Job Skill Matcher Platform - compare your resume skills with job requirements, find skill gaps and apply for jobs.">
+  <title>Job Skill Matcher Platform</title>
+  <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="landing-body">
+  <header class="public-header">
+    <div class="container public-nav">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"><i class="fa-solid fa-briefcase"></i></span>
+        <span class="brand-text">JobSkill Matcher<small>Match skills. Move ahead.</small></span>
+      </a>
+
+      <nav class="public-nav-links" aria-label="Main navigation">
+        <a href="index.html" class="active">Home</a>
+        <a href="jobs.html">Browse Jobs</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#for-you">For applicants</a>
+        <div class="public-nav-actions-wrap">
+          <div class="public-nav-actions" data-guest-only>
+            <a href="login.html" class="btn btn-light btn-sm">Login</a>
+            <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+          </div>
+          <div class="public-nav-actions" data-auth-only hidden>
+            <a href="applicant-dashboard.html" class="btn btn-primary btn-sm" data-dashboard-link>
+              <i class="fa-solid fa-table-columns"></i> Dashboard
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <button type="button" class="nav-toggle" data-nav-toggle aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy-wrap">
+          <span class="eyebrow"><i class="fa-solid fa-wand-magic-sparkles"></i> Resume-powered job matching</span>
+          <h1>Find jobs that match <span class="gradient-text">your skills</span>, not just your keywords.</h1>
+          <p class="hero-copy">
+            Upload your resume, discover your real skill match for every job, see the exact skills you are missing,
+            and follow a clear learning path to close the gap.
+          </p>
+          <div class="hero-actions">
+            <a href="register.html" class="btn btn-primary btn-lg" data-guest-only>
+              Create free account <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="jobs.html" class="btn btn-light btn-lg">Browse jobs</a>
+          </div>
+          <div class="hero-proof">
+            <div class="hero-proof-item"><strong>30</strong><span>technical skills detected</span></div>
+            <div class="hero-proof-item"><strong>20</strong><span>sample jobs ready</span></div>
+            <div class="hero-proof-item"><strong>10/day</strong><span>fair application limit</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="floating-card one"><i class="fa-solid fa-circle-check"></i> 8 of 10 skills matched</div>
+          <div class="hero-preview">
+            <div class="preview-top">
+              <div class="preview-user">
+                <span class="preview-avatar">AS</span>
+                <div><strong>Aditi Sharma</strong><span>Full Stack Learner</span></div>
+              </div>
+              <span class="badge status-accepted">Resume parsed</span>
+            </div>
+            <div class="preview-grid">
+              <div class="preview-stat"><span>Matching jobs</span><strong>14</strong></div>
+              <div class="preview-stat"><span>Applications</span><strong>3</strong></div>
+              <div class="preview-stat"><span>Avg. match</span><strong>69%</strong></div>
+            </div>
+            <div class="preview-match">
+              <div class="match-ring" style="--value: 80; --ring-color: #16a34a; width: 76px; height: 76px;">
+                <span class="match-ring-value">80%</span>
+              </div>
+              <div class="preview-match-info">
+                <h4>Full Stack Developer</h4>
+                <p>TechNova Solutions • Bengaluru</p>
+                <div class="preview-skills">
+                  <span class="preview-skill good">React</span>
+                  <span class="preview-skill good">Node.js</span>
+                  <span class="preview-skill good">MongoDB</span>
+                  <span class="preview-skill bad">AWS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="floating-card two"><i class="fa-solid fa-graduation-cap"></i> 3 courses recommended</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-section alt" id="features">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Everything in one place</span>
+          <h2>A practical placement toolkit for students</h2>
+          <p>Built around one simple question: how well does this resume match this job, and what should the candidate learn next?</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-icon"><i class="fa-solid fa-file-arrow-up"></i></span>
+            <h3>Resume skill extraction</h3>
+            <p>Upload a PDF or DOCX resume. The platform reads the text and detects known technical skills, without any paid AI API.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon green"><i class="fa-solid fa-bullseye"></i></span>
+            <h3>Transparent match score</h3>
+            <p>See the exact calculation: matching skills divided by required skills. Matched skills are green and missing skills are red.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon purple"><i class="fa-solid fa-graduation-cap"></i></span>
+            <h3>Skill-gap courses</h3>
+            <p>Every missing skill comes with free learning resources plus ready-made search links for YouTube, Coursera, Udemy and freeCodeCamp.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon amber"><i class="fa-solid fa-clipboard-list"></i></span>
+            <h3>Application tracking</h3>
+            <p>Follow every application from Pending to Shortlisted, Accepted or Rejected, with the match score saved at application time.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon cyan"><i class="fa-solid fa-users"></i></span>
+            <h3>Recruiter workspace</h3>
+            <p>Recruiters can post jobs, search candidates by skills, review match scores and manage applicant statuses from one dashboard.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon"><i class="fa-solid fa-shield-halved"></i></span>
+            <h3>Secure by design</h3>
+            <p>Passwords are hashed with bcrypt, protected routes use JWT, and resumes are stored privately and downloaded only with authorization.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-section" id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">How it works</span>
+          <h2>From resume to interview in three steps</h2>
+          <p>A straightforward workflow that is easy to explain in a practical examination.</p>
+        </div>
+
+        <div class="steps">
+          <article class="step-card">
+            <span class="step-number">01</span>
+            <h3>Upload your resume</h3>
+            <p>Choose a PDF or DOCX file. The backend extracts text, finds technical skills and stores a private copy of the file.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">02</span>
+            <h3>Compare and improve</h3>
+            <p>Browse jobs ranked by match percentage. Review missing skills and use the recommended free resources to learn them.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">03</span>
+            <h3>Apply and track</h3>
+            <p>Submit up to ten applications per day, prevent duplicates, and track every recruiter status change in real time.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-section alt" id="for-you">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Two focused workspaces</span>
+          <h2>Choose the side of the hiring table</h2>
+          <p>Applicants and recruiters get separate dashboards with only the tools they need.</p>
+        </div>
+
+        <div class="role-grid">
+          <article class="role-card">
+            <span class="feature-icon"><i class="fa-solid fa-user-graduate"></i></span>
+            <h3>For applicants</h3>
+            <p>Make your resume actionable and know exactly where you stand before you apply.</p>
+            <ul>
+              <li><i class="fa-solid fa-check"></i> Resume upload with skill detection</li>
+              <li><i class="fa-solid fa-check"></i> Personal job matches and skill gaps</li>
+              <li><i class="fa-solid fa-check"></i> Course and video recommendations</li>
+              <li><i class="fa-solid fa-check"></i> Application history and status updates</li>
+            </ul>
+            <a href="register.html?role=applicant" class="btn btn-primary">Join as applicant <i class="fa-solid fa-arrow-right"></i></a>
+          </article>
+
+          <article class="role-card recruiter">
+            <span class="feature-icon"><i class="fa-solid fa-user-tie"></i></span>
+            <h3>For recruiters</h3>
+            <p>Find candidates by actual skills and move the right people through your pipeline.</p>
+            <ul>
+              <li><i class="fa-solid fa-check"></i> Post, edit and close job openings</li>
+              <li><i class="fa-solid fa-check"></i> Search candidates by name, email or skills</li>
+              <li><i class="fa-solid fa-check"></i> Review applicant match scores</li>
+              <li><i class="fa-solid fa-check"></i> Shortlist, accept or reject applications</li>
+            </ul>
+            <a href="register.html?role=recruiter" class="btn btn-secondary">Join as recruiter <i class="fa-solid fa-arrow-right"></i></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-section">
+      <div class="container">
+        <div class="cta-band">
+          <div>
+            <h2>Ready to see your real skill match?</h2>
+            <p>Use the demo applicant or recruiter account for an instant walkthrough, or create your own account.</p>
+          </div>
+          <a href="login.html" class="btn btn-light btn-lg">Try the demo <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"><i class="fa-solid fa-briefcase"></i></span>
+        <span class="brand-text">JobSkill Matcher<small>FSD academic project</small></span>
+      </a>
+      <p>Built with HTML, CSS, JavaScript, Node.js, Express.js and MongoDB.</p>
+      <p><a href="jobs.html">Browse jobs</a> &nbsp;•&nbsp; <a href="login.html">Login</a></p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

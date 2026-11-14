@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse job openings and compare them with your resume skills on Job Skill Matcher.">
+  <title>Browse Jobs | Job Skill Matcher</title>
+  <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="jobs">
+  <header class="public-header">
+    <div class="container public-nav">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"><i class="fa-solid fa-briefcase"></i></span>
+        <span class="brand-text">JobSkill Matcher<small>Match skills. Move ahead.</small></span>
+      </a>
+
+      <nav class="public-nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="jobs.html" class="active">Browse Jobs</a>
+        <a href="index.html#how-it-works">How it works</a>
+        <div class="public-nav-actions-wrap">
+          <div class="public-nav-actions" data-guest-only>
+            <a href="login.html" class="btn btn-light btn-sm">Login</a>
+            <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+          </div>
+          <div class="public-nav-actions" data-auth-only hidden>
+            <a href="applicant-dashboard.html" class="btn btn-primary btn-sm" data-dashboard-link>
+              <i class="fa-solid fa-table-columns"></i> Dashboard
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <button type="button" class="nav-toggle" data-nav-toggle aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-content" style="max-width: 1240px;">
+    <section class="card jobs-header-card">
+      <div class="page-heading" style="margin: 0;">
+        <div>
+          <span class="eyebrow"><i class="fa-solid fa-briefcase"></i> Open positions</span>
+          <h1 style="margin-top: 10px;">Browse jobs that value your skills</h1>
+          <p>Compare every opening with your resume, see matched and missing skills, and apply in one place.</p>
+        </div>
+        <div class="page-heading-actions">
+          <span class="badge badge-blue" id="jobs-count">Loading...</span>
+        </div>
+      </div>
+    </section>
+
+    <form class="filter-card card" id="jobs-filter-form">
+      <div class="filter-row">
+        <div class="form-group">
+          <label for="filter-q">Search</label>
+          <input type="search" class="input" id="filter-q" placeholder="Job title, company or skill">
+        </div>
+        <div class="form-group">
+          <label for="filter-location">Location</label>
+          <input type="search" class="input" id="filter-location" placeholder="e.g. Bengaluru">
+        </div>
+        <div class="form-group">
+          <label for="filter-category">Category</label>
+          <select class="select" id="filter-category">
+            <option value="">All categories</option>
+            <option value="Full Stack Developer">Full Stack Developer</option>
+            <option value="Frontend Developer">Frontend Developer</option>
+            <option value="Backend Developer">Backend Developer</option>
+            <option value="Python Developer">Python Developer</option>
+            <option value="Java Developer">Java Developer</option>
+            <option value="Data Analyst">Data Analyst</option>
+            <option value="Data Scientist">Data Scientist</option>
+            <option value="Machine Learning Engineer">Machine Learning Engineer</option>
+            <option value="Database Developer">Database Developer</option>
+            <option value="Web Developer">Web Developer</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="filter-type">Job type</label>
+          <select class="select" id="filter-type">
+            <option value="">All types</option>
+            <option value="Full-time">Full-time</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Internship">Internship</option>
+            <option value="Contract">Contract</option>
+            <option value="Remote">Remote</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+      </div>
+      <div class="filter-row mt-2">
+        <div class="form-group">
+          <label for="filter-experience">Experience</label>
+          <select class="select" id="filter-experience">
+            <option value="">All levels</option>
+            <option value="Fresher">Fresher</option>
+            <option value="Junior">Junior</option>
+            <option value="Mid-level">Mid-level</option>
+            <option value="Senior">Senior</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="filter-skills">Required skills</label>
+          <input type="search" class="input" id="filter-skills" placeholder="React, Python, SQL">
+        </div>
+        <button type="reset" class="btn btn-light"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+      </div>
+    </form>
+
+    <div class="match-empty-banner" id="match-empty-banner" hidden>
+      <i class="fa-solid fa-circle-info"></i>
+      <div id="match-empty-message"></div>
+    </div>
+
+    <div class="jobs-toolbar">
+      <p id="jobs-result-summary">Loading jobs...</p>
+      <div class="jobs-sort">
+        <label for="jobs-sort">Sort by</label>
+        <select class="select" id="jobs-sort">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="title">Job title (A–Z)</option>
+          <option value="match">Best skill match</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="jobs-grid" id="jobs-grid">
+      <div class="loading-state" style="grid-column: 1 / -1;"><span class="spinner"></span> Loading job postings...</div>
+    </div>
+
+    <div class="pagination" id="jobs-pagination"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"><i class="fa-solid fa-briefcase"></i></span>
+        <span class="brand-text">JobSkill Matcher<small>FSD academic project</small></span>
+      </a>
+      <p>Built with HTML, CSS, JavaScript, Node.js, Express.js and MongoDB.</p>
+      <p><a href="index.html">Home</a> &nbsp;•&nbsp; <a href="login.html">Login</a></p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/jobs.js"></script>
+</body>
+</html>

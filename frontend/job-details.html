@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View job details, compare your resume skills and apply on Job Skill Matcher.">
+  <title>Job Details | Job Skill Matcher</title>
+  <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="job-details">
+  <header class="public-header">
+    <div class="container public-nav">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"><i class="fa-solid fa-briefcase"></i></span>
+        <span class="brand-text">JobSkill Matcher<small>Match skills. Move ahead.</small></span>
+      </a>
+
+      <nav class="public-nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="jobs.html" class="active">Browse Jobs</a>
+        <a href="index.html#how-it-works">How it works</a>
+        <div class="public-nav-actions-wrap">
+          <div class="public-nav-actions" data-guest-only>
+            <a href="login.html" class="btn btn-light btn-sm">Login</a>
+            <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+          </div>
+          <div class="public-nav-actions" data-auth-only hidden>
+            <a href="applicant-dashboard.html" class="btn btn-primary btn-sm" data-dashboard-link>
+              <i class="fa-solid fa-table-columns"></i> Dashboard
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <button type="button" class="nav-toggle" data-nav-toggle aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-content" style="max-width: 1200px;">
+    <div class="jobs-toolbar">
+      <a class="btn btn-light btn-sm" href="jobs.html">
+        <i class="fa-solid fa-arrow-left"></i> Back to all jobs
+      </a>
+      <span class="badge badge-blue" id="job-detail-category-badge"><i class="fa-solid fa-briefcase"></i> Job</span>
+    </div>
+
+    <div class="loading-state" id="job-details-loading" hidden>
+      <span class="spinner"></span> Loading job details...
+    </div>
+
+    <div id="job-not-found" hidden></div>
+
+    <div class="job-detail-layout" id="job-details-layout">
+      <div class="dashboard-stack">
+        <section class="card job-detail-hero">
+          <div class="job-detail-title-row">
+            <div>
+              <div class="job-company-line">
+                <span class="company-avatar" id="job-detail-avatar">JS</span>
+                <div>
+                  <p style="margin:0;font-size:0.85rem;" id="job-detail-company">Company</p>
+                  <h1 id="job-detail-title">Job title</h1>
+                </div>
+              </div>
+              <div class="job-meta" style="margin:12px 0 0;">
+                <span><i class="fa-solid fa-location-dot"></i> <span id="job-detail-location">Location</span></span>
+                <span><i class="fa-regular fa-clock"></i> <span id="job-detail-type">Full-time</span></span>
+                <span><i class="fa-solid fa-briefcase"></i> <span id="job-detail-experience">Fresher</span></span>
+                <span><i class="fa-solid fa-calendar-days"></i> Posted <span id="job-detail-posted">—</span></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h2>Job description</h2>
+              <p>Read the full role before you apply.</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="description-text" id="job-detail-description">Loading...</p>
+
+            <div class="skills-block">
+              <div class="skills-block-head">
+                <h4><i class="fa-solid fa-code"></i> Required skills</h4>
+              </div>
+              <div class="skill-list" id="job-required-skills"></div>
+            </div>
+
+            <div class="info-banner mt-2" id="job-owner-panel" hidden>
+              <i class="fa-solid fa-user-tie"></i>
+              <div>
+                <strong>This is your job posting</strong>
+                <span id="job-application-count">0</span> application(s) received so far.
+                <div class="mt-1">
+                  <a class="btn btn-outline btn-sm" href="recruiter-dashboard.html#applications">
+                    <i class="fa-solid fa-clipboard-list"></i> Manage applications
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" id="job-courses-section" hidden>
+          <div class="card-header">
+            <div>
+              <h2>Learn the skills you are missing</h2>
+              <p>Free courses and search links generated from this job's required skills.</p>
+            </div>
+          </div>
+          <div class="card-body" id="job-courses"></div>
+        </section>
+      </div>
+
+      <aside class="dashboard-stack">
+        <section class="card job-side-card">
+          <div class="job-match-summary">
+            <div class="match-ring match-ring-lg" id="job-detail-ring" data-ring-value="0">
+              <span class="match-ring-value">0%</span>
+            </div>
+            <h3>Your skill match</h3>
+            <p id="job-match-note">Calculated from your resume skills.</p>
+
+            <div class="match-counts">
+              <div class="match-count">
+                <strong id="job-matched-count">0</strong>
+                <span>Matched skills</span>
+              </div>
+              <div class="match-count">
+                <strong id="job-required-count">0</strong>
+                <span>Required skills</span>
+              </div>
+            </div>
+
+            <div class="match-counts" style="grid-template-columns: 1fr;">
+              <div class="match-count">
+                <strong id="job-missing-count">0</strong>
+                <span>Missing skills</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body" id="job-match-panel" hidden>
+            <div class="skill-compare">
+              <div class="matched">
+                <h4><i class="fa-solid fa-circle-check"></i> Matched skills</h4>
+                <div class="skill-list" id="job-matched-skills"></div>
+              </div>
+              <div class="missing">
+                <h4><i class="fa-solid fa-circle-xmark"></i> Missing skills</h4>
+                <div class="skill-list" id="job-missing-skills"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body" id="job-guest-match">
+            <p class="muted text-small">Log in as an applicant to see your match score and missing skills.</p>
+          </div>
+
+          <div class="card-body" style="border-top:1px solid #eef2f7;">
+            <div class="form-alert" id="job-apply-alert" hidden></div>
+            <button type="button" class="btn btn-primary btn-block" id="job-apply-button">
+              <i class="fa-solid fa-paper-plane"></i> Apply now
+            </button>
+            <p class="text-small muted mt-1" id="job-apply-note" style="margin-bottom:0;"></p>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h2>Job overview</h2>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="mini-stat-row">
+              <span><i class="fa-solid fa-sack-dollar"></i> Salary range</span>
+              <strong id="job-detail-salary">Not disclosed</strong>
+            </div>
+            <div class="mini-stat-row">
+              <span><i class="fa-solid fa-layer-group"></i> Category</span>
+              <strong id="job-detail-category">Other</strong>
+            </div>
+            <div class="mini-stat-row">
+              <span><i class="fa-regular fa-clock"></i> Job type</span>
+              <strong id="job-detail-type-side">—</strong>
+            </div>
+            <div class="mini-stat-row">
+              <span><i class="fa-solid fa-briefcase"></i> Experience</span>
+              <strong id="job-detail-experience-side">—</strong>
+            </div>
+            <div class="info-banner mt-2">
+              <i class="fa-solid fa-shield-halved"></i>
+              <div>
+                <strong>Application limit</strong>
+                Applicants can submit a maximum of 10 applications per day (Asia/Kolkata calendar day).
+              </div>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"><i class="fa-solid fa-briefcase"></i></span>
+        <span class="brand-text">JobSkill Matcher<small>FSD academic project</small></span>
+      </a>
+      <p>Built with HTML, CSS, JavaScript, Node.js, Express.js and MongoDB.</p>
+      <p><a href="jobs.html">Browse jobs</a> &nbsp;•&nbsp; <a href="login.html">Login</a></p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/jobs.js"></script>
+</body>
+</html>

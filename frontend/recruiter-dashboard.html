@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recruiter Dashboard | Job Skill Matcher</title>
+  <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-require-role="recruiter" data-page="recruiter-dashboard">
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Recruiter navigation">
+      <div class="sidebar-header">
+        <a class="brand" href="index.html">
+          <span class="brand-mark"><i class="fa-solid fa-briefcase"></i></span>
+          <span class="brand-text">JobSkill Matcher<small>Recruiter workspace</small></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <p class="nav-section-label">Workspace</p>
+        <a href="#overview" class="nav-link active" data-tab-link="overview">
+          <i class="fa-solid fa-table-columns"></i> Overview
+        </a>
+        <a href="#jobs" class="nav-link" data-tab-link="jobs">
+          <i class="fa-solid fa-briefcase"></i> My job postings
+        </a>
+        <a href="#candidates" class="nav-link" data-tab-link="candidates">
+          <i class="fa-solid fa-users"></i> Candidate search
+        </a>
+        <a href="#applications" class="nav-link" data-tab-link="applications">
+          <i class="fa-solid fa-clipboard-list"></i> Applications
+        </a>
+
+        <p class="nav-section-label" style="margin-top: 12px;">Public site</p>
+        <a href="jobs.html" class="nav-link">
+          <i class="fa-solid fa-magnifying-glass"></i> Browse all jobs
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <span class="avatar" data-user-avatar>RV</span>
+          <div class="sidebar-user-copy">
+            <strong data-user-name>Recruiter</strong>
+            <span data-user-role>Recruiter</span>
+          </div>
+          <button type="button" class="icon-button" data-logout title="Logout" aria-label="Logout">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="mobile-sidebar-overlay" data-sidebar-overlay></div>
+
+    <div class="main-shell">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="hamburger" data-sidebar-toggle aria-label="Open navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <span class="topbar-title">Recruiter &nbsp;/&nbsp; <strong id="recruiter-page-title">Overview</strong></span>
+        </div>
+        <div class="topbar-right">
+          <div class="notification-wrap" data-notification-bell>
+            <button type="button" class="icon-button notification-button" aria-label="Notifications">
+              <i class="fa-regular fa-bell"></i>
+              <span class="notification-badge" hidden>0</span>
+            </button>
+            <div class="notification-dropdown" hidden>
+              <div class="notification-head">
+                <strong>Notifications</strong>
+                <button type="button" data-mark-all>Mark all read</button>
+              </div>
+              <div class="notification-list">
+                <div class="loading-state"><span class="spinner"></span> Loading...</div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-user">
+            <span class="avatar" data-user-avatar>RV</span>
+            <div class="topbar-user-copy">
+              <strong data-user-name>Recruiter</strong>
+              <span data-user-email>recruiter@demo.com</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <div class="page-heading">
+          <div>
+            <h1>Welcome back, <span id="recruiter-welcome-name">Recruiter</span> <span aria-hidden="true">👋</span></h1>
+            <p>Manage your openings, search candidates by real skills and move applications forward.</p>
+          </div>
+          <div class="page-heading-actions recruiter-top-actions">
+            <button type="button" class="btn btn-primary" data-open-job-modal>
+              <i class="fa-solid fa-plus"></i> Post a new job
+            </button>
+          </div>
+        </div>
+
+        <div class="tab-bar" role="tablist" aria-label="Recruiter sections">
+          <button type="button" class="tab-button active" role="tab" data-tab="overview">
+            <i class="fa-solid fa-table-columns"></i> Overview
+          </button>
+          <button type="button" class="tab-button" role="tab" data-tab="jobs">
+            <i class="fa-solid fa-briefcase"></i> Jobs <span class="badge badge-blue" id="tab-jobs-count">0</span>
+          </button>
+          <button type="button" class="tab-button" role="tab" data-tab="candidates">
+            <i class="fa-solid fa-users"></i> Candidates
+          </button>
+          <button type="button" class="tab-button" role="tab" data-tab="applications">
+            <i class="fa-solid fa-clipboard-list"></i> Applications <span class="badge badge-blue" id="tab-applications-count">0</span>
+          </button>
+        </div>
+
+        <!-- ================= OVERVIEW ================= -->
+        <section class="tab-panel active" data-tab-panel="overview" role="tabpanel">
+          <section class="stat-grid" aria-label="Recruiter summary">
+            <article class="stat-card">
+              <div class="stat-card-top">
+                <span class="stat-icon"><i class="fa-solid fa-briefcase"></i></span>
+              </div>
+              <h3 id="recruiter-stat-jobs">0</h3>
+              <p>Active job postings</p>
+              <span class="stat-trend"><i class="fa-solid fa-circle-check"></i> Published by you</span>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-card-top">
+                <span class="stat-icon purple"><i class="fa-solid fa-users"></i></span>
+              </div>
+              <h3 id="recruiter-stat-applicants">0</h3>
+              <p>Total candidates</p>
+              <span class="stat-trend">Unique applicants to your jobs</span>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-card-top">
+                <span class="stat-icon cyan"><i class="fa-solid fa-paper-plane"></i></span>
+              </div>
+              <h3 id="recruiter-stat-applications">0</h3>
+              <p>Total applications</p>
+              <span class="stat-trend"><span id="recruiter-stat-pending">0</span> pending review</span>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-card-top">
+                <span class="stat-icon green"><i class="fa-solid fa-user-check"></i></span>
+              </div>
+              <h3 id="recruiter-stat-shortlisted">0</h3>
+              <p>Shortlisted candidates</p>
+              <span class="stat-trend"><span id="recruiter-stat-accepted">0</span> accepted</span>
+            </article>
+          </section>
+
+          <div class="dashboard-grid">
+            <section class="card">
+              <div class="card-header">
+                <div>
+                  <h2>Recent applications</h2>
+                  <p>The latest candidates who applied to your jobs.</p>
+                </div>
+                <button type="button" class="btn btn-light btn-sm" data-tab-jump="applications">
+                  View all <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Candidate</th>
+                      <th>Job</th>
+                      <th>Applied</th>
+                      <th>Match</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="recruiter-recent-body">
+                    <tr><td colspan="5" class="table-empty"><span class="spinner"></span><br>Loading applications...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <div class="dashboard-stack">
+              <section class="card">
+                <div class="card-header">
+                  <div>
+                    <h2>Application status</h2>
+                    <p>Live counts from MongoDB</p>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="chart-wrap">
+                    <canvas id="recruiter-status-chart" aria-label="Recruiter application status chart"></canvas>
+                    <div class="chart-center-label">
+                      <strong id="recruiter-chart-total">0</strong>
+                      <span>applications</span>
+                    </div>
+                  </div>
+                  <div class="chart-legend" id="recruiter-status-legend"></div>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <div>
+                    <h2>Busiest job postings</h2>
+                    <p>Ranked by number of applications.</p>
+                  </div>
+                </div>
+                <div class="card-body" id="recruiter-top-jobs">
+                  <div class="loading-state"><span class="spinner"></span> Loading...</div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= JOBS ================= -->
+        <section class="tab-panel" data-tab-panel="jobs" role="tabpanel">
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2>Your job postings</h2>
+                <p>Create, edit, close or reopen your own openings. Only you can manage these jobs.</p>
+              </div>
+              <div class="header-actions">
+                <input type="search" class="input" id="recruiter-job-search" placeholder="Search title or company" style="width: 210px;" aria-label="Search your jobs">
+                <button type="button" class="btn btn-primary btn-sm" data-open-job-modal>
+                  <i class="fa-solid fa-plus"></i> New job
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="job-manage-list" id="recruiter-jobs-list">
+                <div class="loading-state"><span class="spinner"></span> Loading your job postings...</div>
+              </div>
+              <div class="pagination" id="recruiter-jobs-pagination"></div>
+            </div>
+          </section>
+        </section>
+
+        <!-- ================= CANDIDATES ================= -->
+        <section class="tab-panel" data-tab-panel="candidates" role="tabpanel">
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2>Candidate search</h2>
+                <p>Search by name, email, headline or technical skill. Select one of your jobs to rank candidates by match score.</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <form class="candidate-filters" id="candidate-search-form">
+                <div class="form-group">
+                  <label for="candidate-search-input">Keyword or skill</label>
+                  <input type="search" class="input" id="candidate-search-input" placeholder="e.g. React, Python, Priya">
+                </div>
+                <div class="form-group">
+                  <label for="candidate-job-select">Match against job</label>
+                  <select class="select" id="candidate-job-select">
+                    <option value="">No specific job</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                  <i class="fa-solid fa-magnifying-glass"></i> Search
+                </button>
+              </form>
+
+              <div class="jobs-toolbar mt-2">
+                <p class="muted" id="candidate-count">Searching candidates...</p>
+                <p class="text-small muted" id="candidate-match-note"></p>
+              </div>
+
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Candidate</th>
+                      <th>Skills</th>
+                      <th>Resume</th>
+                      <th id="candidate-match-header" hidden>Match</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="candidate-body">
+                    <tr><td colspan="5" class="table-empty"><span class="spinner"></span><br>Loading candidates...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="pagination" id="candidate-pagination"></div>
+            </div>
+          </section>
+        </section>
+
+        <!-- ================= APPLICATIONS ================= -->
+        <section class="tab-panel" data-tab-panel="applications" role="tabpanel">
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2>Applications to your jobs</h2>
+                <p>Update a candidate's status, review their match score and download authorized resumes.</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <form class="candidate-filters" id="recruiter-application-filter">
+                <div class="form-group">
+                  <label for="recruiter-filter-job">Job</label>
+                  <select class="select" id="recruiter-filter-job">
+                    <option value="">All jobs</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="recruiter-filter-status">Status</label>
+                  <select class="select" id="recruiter-filter-status">
+                    <option value="">All statuses</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Shortlisted">Shortlisted</option>
+                    <option value="Accepted">Accepted</option>
+                    <option value="Rejected">Rejected</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply filters</button>
+              </form>
+
+              <div class="table-wrap mt-2">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Candidate</th>
+                      <th>Job</th>
+                      <th>Applied</th>
+                      <th>Match</th>
+                      <th>Resume</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="recruiter-applications-body">
+                    <tr><td colspan="6" class="table-empty"><span class="spinner"></span><br>Loading applications...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="pagination" id="recruiter-applications-pagination"></div>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Create / edit job modal -->
+  <div class="modal-overlay" id="job-modal" aria-hidden="true">
+    <div class="modal modal-medium" role="dialog" aria-modal="true" aria-labelledby="job-modal-title">
+      <div class="modal-header">
+        <div>
+          <h2 id="job-modal-title">Post a new job</h2>
+          <p>All fields marked with <span class="required">*</span> are required.</p>
+        </div>
+        <button type="button" class="icon-button" data-close-job-modal aria-label="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <form id="job-form">
+        <div class="modal-body">
+          <div class="form-alert" id="job-form-alert" hidden></div>
+          <input type="hidden" id="job-id">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="job-title">Job title <span class="required">*</span></label>
+              <input type="text" class="input" id="job-title" maxlength="120" required placeholder="Full Stack Developer">
+            </div>
+            <div class="form-group">
+              <label for="job-company">Company name <span class="required">*</span></label>
+              <input type="text" class="input" id="job-company" maxlength="120" required placeholder="TechNova Solutions">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="job-location">Location <span class="required">*</span></label>
+              <input type="text" class="input" id="job-location" maxlength="100" required placeholder="Bengaluru, Karnataka">
+            </div>
+            <div class="form-group">
+              <label for="job-salary">Salary range</label>
+              <input type="text" class="input" id="job-salary" maxlength="80" placeholder="₹6 - ₹10 LPA">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="job-category">Category</label>
+              <select class="select" id="job-category">
+                <option value="Full Stack Developer">Full Stack Developer</option>
+                <option value="Frontend Developer">Frontend Developer</option>
+                <option value="Backend Developer">Backend Developer</option>
+                <option value="Python Developer">Python Developer</option>
+                <option value="Java Developer">Java Developer</option>
+                <option value="Data Analyst">Data Analyst</option>
+                <option value="Data Scientist">Data Scientist</option>
+                <option value="Machine Learning Engineer">Machine Learning Engineer</option>
+                <option value="Database Developer">Database Developer</option>
+                <option value="Web Developer">Web Developer</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="job-type">Job type</label>
+              <select class="select" id="job-type">
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+                <option value="Internship">Internship</option>
+                <option value="Contract">Contract</option>
+                <option value="Remote">Remote</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="job-experience">Experience level</label>
+              <select class="select" id="job-experience">
+                <option value="Fresher">Fresher</option>
+                <option value="Junior">Junior</option>
+                <option value="Mid-level">Mid-level</option>
+                <option value="Senior">Senior</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="job-description">Job description <span class="required">*</span></label>
+            <textarea class="textarea" id="job-description" rows="5" maxlength="8000" required placeholder="Describe the role, responsibilities and what the candidate will work on..."></textarea>
+            <small class="field-help">At least 30 characters. This is shown to applicants on the job details page.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="job-skills-input">Required skills <span class="required">*</span></label>
+            <div class="selected-skills" id="job-selected-skills"></div>
+            <input type="text" class="input mt-2" id="job-skills-input" placeholder="Type a skill and press Enter (e.g. React)">
+            <small class="field-help">Press Enter after each skill. Click a suggested skill below to add it quickly.</small>
+            <div class="skill-picker" id="job-skill-picker"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-close-job-modal>Cancel</button>
+          <button type="submit" class="btn btn-primary" id="job-submit-button">
+            <i class="fa-solid fa-floppy-disk"></i> <span id="job-submit-label">Post job</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="vendor/chart.umd.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/recruiter.js"></script>
+</body>
+</html>

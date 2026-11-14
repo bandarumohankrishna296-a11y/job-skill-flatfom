@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Applications | Job Skill Matcher</title>
+  <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-require-role="applicant" data-page="applications">
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Applicant navigation">
+      <div class="sidebar-header">
+        <a class="brand" href="index.html">
+          <span class="brand-mark"><i class="fa-solid fa-briefcase"></i></span>
+          <span class="brand-text">JobSkill Matcher<small>Applicant workspace</small></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <p class="nav-section-label">Workspace</p>
+        <a href="applicant-dashboard.html" class="nav-link">
+          <i class="fa-solid fa-table-columns"></i> Overview
+        </a>
+        <a href="jobs.html" class="nav-link">
+          <i class="fa-solid fa-magnifying-glass"></i> Browse jobs
+        </a>
+        <a href="applications.html" class="nav-link active">
+          <i class="fa-solid fa-clipboard-list"></i> My applications
+        </a>
+        <a href="profile.html" class="nav-link">
+          <i class="fa-regular fa-user"></i> Profile &amp; resume
+        </a>
+
+        <p class="nav-section-label" style="margin-top: 12px;">Learning</p>
+        <a href="jobs.html?sort=match" class="nav-link">
+          <i class="fa-solid fa-bullseye"></i> Skill matches
+        </a>
+        <a href="profile.html#skills" class="nav-link">
+          <i class="fa-solid fa-code"></i> My skills
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <span class="avatar" data-user-avatar>AS</span>
+          <div class="sidebar-user-copy">
+            <strong data-user-name>Applicant</strong>
+            <span data-user-role>Applicant</span>
+          </div>
+          <button type="button" class="icon-button" data-logout title="Logout" aria-label="Logout">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="mobile-sidebar-overlay" data-sidebar-overlay></div>
+
+    <div class="main-shell">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="hamburger" data-sidebar-toggle aria-label="Open navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <span class="topbar-title">Applicant &nbsp;/&nbsp; <strong>My applications</strong></span>
+        </div>
+        <div class="topbar-right">
+          <div class="notification-wrap" data-notification-bell>
+            <button type="button" class="icon-button notification-button" aria-label="Notifications">
+              <i class="fa-regular fa-bell"></i>
+              <span class="notification-badge" hidden>0</span>
+            </button>
+            <div class="notification-dropdown" hidden>
+              <div class="notification-head">
+                <strong>Notifications</strong>
+                <button type="button" data-mark-all>Mark all read</button>
+              </div>
+              <div class="notification-list">
+                <div class="loading-state"><span class="spinner"></span> Loading...</div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-user">
+            <span class="avatar" data-user-avatar>AS</span>
+            <div class="topbar-user-copy">
+              <strong data-user-name>Applicant</strong>
+              <span data-user-email>applicant@demo.com</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <div class="page-heading">
+          <div>
+            <h1>Application tracking</h1>
+            <p>Follow every application and the recruiter's latest decision.</p>
+          </div>
+          <div class="page-heading-actions">
+            <a href="jobs.html" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Apply to more jobs</a>
+          </div>
+        </div>
+
+        <section class="stat-grid" aria-label="Application summary">
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <span class="stat-icon"><i class="fa-solid fa-paper-plane"></i></span>
+            </div>
+            <h3 id="applications-count">0</h3>
+            <p>Applications found</p>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <span class="stat-icon amber"><i class="fa-solid fa-calendar-day"></i></span>
+            </div>
+            <h3 id="applications-used-today">0</h3>
+            <p>Applications submitted today</p>
+            <span class="stat-trend"><i class="fa-regular fa-clock"></i> Resets at midnight IST</span>
+          </article>
+
+          <article class="stat-card" style="grid-column: span 2;">
+            <div class="card-title-row">
+              <h2 style="font-size:0.9rem;margin:0;">Status summary</h2>
+              <span class="badge badge-blue">Live from MongoDB</span>
+            </div>
+            <div class="status-summary-grid mt-2" id="applications-status-summary"></div>
+          </article>
+        </section>
+
+        <section class="card">
+          <div class="card-body">
+            <div class="limit-card mb-2">
+              <div class="limit-top">
+                <span><i class="fa-solid fa-shield-halved"></i> Daily application limit</span>
+                <strong id="applications-limit-used">0 / 10 used</strong>
+              </div>
+              <div class="progress">
+                <div class="progress-bar" id="applications-limit-progress" style="width: 0%;"></div>
+              </div>
+              <p><span id="applications-limit-remaining">You can submit 10 more applications today.</span> The limit uses the Asia/Kolkata calendar day.</p>
+            </div>
+
+            <form class="filter-card card" id="application-filter-form" style="box-shadow:none;padding:0;border:0;margin:0;">
+              <div class="filter-row" style="grid-template-columns: minmax(180px, 240px) auto;">
+                <div class="form-group">
+                  <label for="application-status-filter">Filter by status</label>
+                  <select class="select" id="application-status-filter">
+                    <option value="">All statuses</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Shortlisted">Shortlisted</option>
+                    <option value="Accepted">Accepted</option>
+                    <option value="Rejected">Rejected</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply filter</button>
+                <button type="reset" class="btn btn-light"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+              </div>
+            </form>
+
+            <div class="table-wrap mt-2">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Job</th>
+                    <th>Applied</th>
+                    <th>Match</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="applications-body">
+                  <tr><td colspan="5" class="table-empty"><span class="spinner"></span><br>Loading applications...</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="pagination" id="applications-pagination"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/applicant.js"></script>
+</body>
+</html>

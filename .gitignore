@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Environment secrets
+.env
+backend/.env
+
+# Uploaded resumes (private user files)
+backend/uploads/resumes/*
+!backend/uploads/resumes/.gitkeep
+
+# Logs and OS files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/

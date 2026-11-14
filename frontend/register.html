@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account | Job Skill Matcher</title>
+  <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="auth-layout">
+    <aside class="auth-aside">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"><i class="fa-solid fa-briefcase"></i></span>
+        <span class="brand-text">JobSkill Matcher<small>Match skills. Move ahead.</small></span>
+      </a>
+
+      <div class="auth-aside-content">
+        <span class="eyebrow" style="border-color: rgba(255,255,255,.2); background: rgba(255,255,255,.1); color:#dbeafe;">
+          <i class="fa-solid fa-graduation-cap"></i> Built for students
+        </span>
+        <h1>Your next opportunity starts with the skills you already have.</h1>
+        <p>Create an applicant account to find matching jobs, or a recruiter account to publish openings and discover candidates.</p>
+        <ul class="auth-bullets">
+          <li><i class="fa-solid fa-check"></i> Free account with secure password hashing</li>
+          <li><i class="fa-solid fa-check"></i> Clear dashboard for your role</li>
+          <li><i class="fa-solid fa-check"></i> Private resume storage and authorized downloads</li>
+          <li><i class="fa-solid fa-check"></i> Real data from MongoDB, not hardcoded cards</li>
+        </ul>
+      </div>
+
+      <div class="auth-aside-footer">Job Skill Matcher • Full Stack Development academic project</div>
+    </aside>
+
+    <main class="auth-main">
+      <div class="auth-card">
+        <a href="index.html" class="auth-back-link"><i class="fa-solid fa-arrow-left"></i> Back to home</a>
+
+        <div class="auth-card-header">
+          <h1>Create your account</h1>
+          <p>Choose your role and set up your workspace in under a minute.</p>
+        </div>
+
+        <div class="form-alert" id="register-alert" hidden></div>
+
+        <form id="register-form" novalidate>
+          <div class="form-group">
+            <label>I am joining as</label>
+            <div class="role-options">
+              <label class="role-option">
+                <input type="radio" name="role" value="applicant" checked>
+                <span class="role-option-inner">
+                  <i class="fa-solid fa-user-graduate"></i>
+                  <strong>Applicant</strong>
+                  <span>Find jobs and improve skills</span>
+                </span>
+              </label>
+              <label class="role-option">
+                <input type="radio" name="role" value="recruiter">
+                <span class="role-option-inner">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <strong>Recruiter</strong>
+                  <span>Post jobs and hire talent</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="register-name">Full name</label>
+            <div class="input-wrap">
+              <i class="fa-regular fa-user"></i>
+              <input type="text" class="input" id="register-name" name="name" placeholder="Your full name" autocomplete="name" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="register-email">Email address</label>
+            <div class="input-wrap">
+              <i class="fa-regular fa-envelope"></i>
+              <input type="email" class="input" id="register-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="register-password">Password</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" class="input" id="register-password" name="password" placeholder="Minimum 8 characters" autocomplete="new-password" required>
+                <button type="button" class="password-toggle" data-toggle-password="register-password" aria-label="Show password">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="register-confirm">Confirm password</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" class="input" id="register-confirm" name="confirmPassword" placeholder="Repeat password" autocomplete="new-password" required>
+                <button type="button" class="password-toggle" data-toggle-password="register-confirm" aria-label="Show password">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <p class="password-hint"><i class="fa-solid fa-circle-info"></i> Use at least 8 characters with one letter and one number.</p>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg mt-2">
+            <i class="fa-solid fa-user-plus"></i> Create account
+          </button>
+        </form>
+
+        <p class="auth-footer-text">Already have an account? <a href="login.html">Sign in</a></p>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    // Pre-select the role when arriving from the landing page role buttons.
+    (function () {
+      const role = new URLSearchParams(window.location.search).get('role');
+      if (['applicant', 'recruiter'].includes(role)) {
+        const input = document.querySelector(`input[name="role"][value="${role}"]`);
+        if (input) input.checked = true;
+      }
+    })();
+  </script>
+</body>
+</html>
