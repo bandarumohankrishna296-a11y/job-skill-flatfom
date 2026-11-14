@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Job Skill Matcher Platform
 
 A full-stack academic project (Full Stack Development) that compares an applicant's resume skills with the skills required by a job, shows a match percentage, highlights missing skills, recommends free courses, and lets applicants apply while recruiters manage jobs and candidates.
@@ -1036,3 +1037,7 @@ Both are vendored locally under `frontend/vendor/`. Confirm the files exist and 
 ## License
 
 MIT — free to use for learning and academic submissions. Demo data and company names are fictional.
+=======
+# job-skill-flatfom
+A full-stack Job Skill Matcher Platform that extracts resume skills, calculates job compatibility scores, identifies skill gaps, and recommends courses.
+>>>>>>> 573dc810b2a7a1f54268449e63425cadbe08f4e3
